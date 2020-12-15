@@ -1,0 +1,35 @@
+.app-header {
+    background-color: black;
+    height: 36px;
+    padding: 8px 32px 8px 16px;
+}
+
+.app-title {
+    color: floralwhite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    margin-left: 0px;
+    text-align: center;
+}
+
+.login-button {
+    float: right;    
+    margin: -33px;
+    margin-right: 0px;
+}
+
+ .tabs {
+     margin-bottom: 20px;
+ }
+
+ .dispNone {
+     display: none;
+ }
+
+ .dispBlock {
+     display: block;
+ }
+
+ .red {
+     color: red;
+ }
