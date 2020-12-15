@@ -135,7 +135,9 @@ class Header extends Component {
     return (
       <div>
         <header className='app-header'>
-        <div className="app-title">Article Management React App</div>
+        <div className="app-title">
+        <Typography variant="headline" component="h4">Article Management React App</Typography>
+        </div>
            <div className='login-button'>
             <Button
               variant='contained'

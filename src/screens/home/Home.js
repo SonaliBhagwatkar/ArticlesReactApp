@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import Header from '../../common/header/Header';
 import articleData from '../../assets/articleData';
 import Typography from '@material-ui/core/Typography';
@@ -9,6 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import Details from '../details/Details';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-
-
-
 class Home extends Component {
    
+    articleClickHandler = (articleId) => {
+        ReactDOM.render(<Details articleId ={articleId}/>, document.getElementById('root'));
+    }
+
     render() {
         return (
             <div>
@@ -50,7 +54,8 @@ class Home extends Component {
                                             </Typography>
                                             <div><b>Story Line:</b> {article.storyline}</div>                                            
                                         </React.Fragment>
-                                    }>
+                                    }
+                                    onClick={()=> this.articleClickHandler(article.id)}>
                                 </ListItemText>
                                 <Divider variant="inset" component="li" />
                             </ListItem>
