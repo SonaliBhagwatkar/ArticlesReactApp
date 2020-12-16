@@ -16,7 +16,7 @@ class Details extends Component {
         }
     }
 
-    componentWillMount(){
+    UNSAFE_componentWillMount(){
         let currentState = this.state;
         currentState.article = articleData.filter((article) => {
             return article.id === this.props.articleId
@@ -57,7 +57,7 @@ class Details extends Component {
                             <Typography><span className="bold"> Rating:</span> {article.critics_rating}  </Typography>
                         </div>
                         <div>
-                            <Typography><span className="bold"> storyline:</span> {article.storyline}  </Typography>
+                            <Typography><span className="bold"> storyline:</span> <a href={article.wiki_url}>(Wiki Link)</a> {article.storyline}  </Typography>
                         </div>                  
 
                     </div>

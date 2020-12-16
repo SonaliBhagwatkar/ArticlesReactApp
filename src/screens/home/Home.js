@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Header from '../../common/header/Header';
 import articleData from '../../assets/articleData';
@@ -11,63 +11,98 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Details from '../details/Details';
-
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      maxWidth: '36ch',
-      backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-      display: 'inline',
-    },
-  }));
+  root: {
+    width: '100%',
+    maxWidth: '36ch',
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: 'inline',
+  },
+}));
 
 class Home extends Component {
-   
-    articleClickHandler = (articleId) => {
-        ReactDOM.render(<Details articleId ={articleId}/>, document.getElementById('root'));
-    }
+  constructor() {
+    super();
+    this.state = {
+      article: [...articleData],
+    };
+    console.log(this.state.article);
+  }
 
-    render() {
-        return (
-            <div>
-                <Header/>
-                <div className="articles-list">
-                    <List className={useStyles.root}>
-                        {articleData.map(article => (
-                            <ListItem key={article.id} alignItems="flex-start">
-                                <ListItemAvatar>
-                                    <Avatar src={article.poster_url} alt={article.title} />
-                                </ListItemAvatar>
-                                <ListItemText 
-                                    primary={article.title}
-                                    secondary= {
-                                        <React.Fragment>
-                                            <Typography
-                                                component="span"
-                                                variant="body2"
-                                                className={useStyles.inline}
-                                                color="textPrimary">
-                                                Duration (in mins):{article.duration}                                                
-                                            </Typography>
-                                            <div><b>Story Line:</b> {article.storyline}</div>                                            
-                                        </React.Fragment>
-                                    }
-                                    onClick={()=> this.articleClickHandler(article.id)}>
-                                </ListItemText>
-                                <Divider variant="inset" component="li" />
-                            </ListItem>
-                            
+  articleClickHandler = (articleId) => {
+    ReactDOM.render(
+      <Details articleId={articleId} />,
+      document.getElementById('root')
+    );
+  };
 
-                        ))}
-                    </List>
-                </div>
-            </div>
-        );
+  deleteArticleHandler = (articleId) => {
+    let articleList = this.state.article;
+    console.log(articleList);
+    let articleIndex = 0;
+    articleList.forEach(function (article, index) {
+      if (article.id === articleId) {
+        articleIndex = index;
+      }
+    }, this);
+    let newArticles = articleList;
+    newArticles.splice(articleIndex, 1);
+    this.setState({ article: newArticles });
+  };
 
-    }
+  render() {
+    return (
+      <div>
+        <Header />
+        <div className='articles-list'>
+          <List className={useStyles.root}>
+            {this.state.article.map((article) => (
+              <ListItem key={article.id} alignItems='flex-start'>
+                <ListItemAvatar>
+                  <Avatar src={article.poster_url} alt={article.title} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={article.title}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        component='span'
+                        variant='body2'
+                        className={useStyles.inline}
+                        color='textPrimary'
+                      >
+                        Duration (in mins):{article.duration}
+                      </Typography>
+                      <div>
+                        <b>Story Line:</b> {article.storyline}
+                      </div>
+                    </React.Fragment>
+                  }
+                  onClick={() => this.articleClickHandler(article.id)}
+                ></ListItemText>
+                <ListItemSecondaryAction>
+                  <IconButton
+                    edge='end'
+                    aria-label='delete'
+                    onClick={() => this.deleteArticleHandler(article.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItemSecondaryAction>
+                <Divider variant='inset' component='li' />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Home;
