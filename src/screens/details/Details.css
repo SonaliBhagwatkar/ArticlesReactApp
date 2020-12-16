@@ -1,3 +1,8 @@
+/* .main-container {
+    display: flex;
+    flex-direction: row;
+} */
+
 .details {
     text-align: left;
 }
@@ -8,11 +13,6 @@
     padding: 20px;
 }
 
-.main-container {
-    display: flex;
-    flex-direction: row;
-}
-
 .left-section{
     width: 40%;
     text-align: center;
@@ -21,6 +21,8 @@
 
 .right-section {
     width: 50%;   
+    margin-left: 450px;   
+    margin-top: -300px;
 }
 
 .bold {

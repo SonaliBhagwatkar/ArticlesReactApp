@@ -14,6 +14,9 @@ import Details from '../details/Details';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+import './Home.css';
+import Update from '../update/Update';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +45,22 @@ class Home extends Component {
     );
   };
 
+  addArticleHandler = (newArticle) => {
+      let articleList = this.state.article;
+      if (articleList.length > 0) {
+          newArticle.id = articleList[articleList.length - 1].id + 1;
+      } else {
+          newArticle.id = 1;
+      }
+      articleList.push(newArticle);
+      this.setState({ article: articleList});
+  }
+
+  updateArticleHandler = () => {
+      ReactDOM.render(<Update addArticleHandler={this.addArticleHandler}/>, document.getElementById('root') );
+  }
+
+
   deleteArticleHandler = (articleId) => {
     let articleList = this.state.article;
     console.log(articleList);
@@ -61,6 +80,9 @@ class Home extends Component {
       <div>
         <Header />
         <div className='articles-list'>
+            <div className="update-Button">
+                 <Button variant="contained" color="primary" onClick={this.updateArticleHandler}> UPDATE ARTICLES </Button>
+            </div>            
           <List className={useStyles.root}>
             {this.state.article.map((article) => (
               <ListItem key={article.id} alignItems='flex-start'>
