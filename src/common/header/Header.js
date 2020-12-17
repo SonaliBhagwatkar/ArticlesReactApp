@@ -1,3 +1,5 @@
+//Complete Header Component of the appalication
+
 import React, { Component } from 'react';
 import './Header.css';
 import Button from '@material-ui/core/Button';
@@ -21,6 +23,8 @@ const customStyles = {
     transform: 'translate(-50%,-50%)',
   },
 };
+
+//User defined component for custom styling
 
 const TabContainer = function (props) {
   return (
@@ -57,17 +61,25 @@ class Header extends Component {
     };
   }
 
+  //Function to control modal opening
+
   openModalHandler = () => {
     this.setState({ modalIsOpen: true });
   };
+
+   //Function to control modal closing
 
   closeModalHandler = () => {
     this.setState({ modalIsOpen: false });
   };
 
+  //Function to control tab switching between register and login tabs
+
   tabChangeHandler = (event, value) => {
     this.setState({ value: value });
   };
+
+  //Function to control user login
 
   loginClickHandler = () => {
     this.state.username === ''
@@ -81,6 +93,8 @@ class Header extends Component {
     }
   };
 
+  // Function to handle user registration
+  
   registerClickHandler = () => {
     this.state.firstname === ''
       ? this.setState({ firstnameRequired: 'dispBlock' })

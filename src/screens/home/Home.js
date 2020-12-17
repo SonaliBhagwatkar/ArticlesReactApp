@@ -86,12 +86,14 @@ class Home extends Component {
             </div><br/><br/>   
             <div>       
           <List className={useStyles.root}>
-          <Link to="/details">
+          
             {this.state.article.map((article) => (
               <ListItem key={article.id} alignItems='flex-start'>
                 <ListItemAvatar>
                   <Avatar src={article.poster_url} alt={article.title} />
                 </ListItemAvatar>
+                <div>
+                <Link to="/details">
                 <ListItemText
                   primary={article.title}
                   secondary={
@@ -111,6 +113,9 @@ class Home extends Component {
                   }
                   onClick={() => this.articleClickHandler(article.id)}
                 ></ListItemText>
+                </Link>
+                </div>
+
                 <ListItemSecondaryAction>
                   <IconButton
                     edge='end'
@@ -123,7 +128,7 @@ class Home extends Component {
                 <Divider variant='inset' component='li' />
               </ListItem>
             ))}
-            </Link>
+           
           </List>
           </div>  
         </div>
