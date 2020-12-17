@@ -17,6 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import './Home.css';
 import Update from '../update/Update';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,8 +83,10 @@ class Home extends Component {
         <div className='articles-list'>
             <div className="update-Button">
                  <Button variant="contained" color="primary" onClick={this.updateArticleHandler}> UPDATE ARTICLES </Button>
-            </div>            
+            </div><br/><br/>   
+            <div>       
           <List className={useStyles.root}>
+          <Link to="/details">
             {this.state.article.map((article) => (
               <ListItem key={article.id} alignItems='flex-start'>
                 <ListItemAvatar>
@@ -120,7 +123,9 @@ class Home extends Component {
                 <Divider variant='inset' component='li' />
               </ListItem>
             ))}
+            </Link>
           </List>
+          </div>  
         </div>
       </div>
     );

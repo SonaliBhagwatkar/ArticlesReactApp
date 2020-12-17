@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import articleData from '../../assets/articleData';
 import Header from '../../common/header/Header';
 import Typography from '@material-ui/core/Typography';
-import Home from '../home/Home';
+//import Home from '../home/Home';
 import './Details.css';
+import { Button } from '@material-ui/core';
+
 
 class Details extends Component {
   constructor() {
     super();
     this.state = {
-      article: {},
+      article: [...articleData],
     };
   }
 
@@ -22,9 +24,9 @@ class Details extends Component {
     this.setState({ currentState });
   }
 
-  backToHomeHandler = () => {
-    ReactDOM.render(<Home />, document.getElementById('root'));
-  };
+  // backToHomeHandler = () => {
+  //   ReactDOM.render(<Home />, document.getElementById('root'));
+  // };
 
   render() {
     let article = this.state.article;
@@ -32,9 +34,7 @@ class Details extends Component {
       <div className='details'>
         <Header />
         <div className='back'>
-          <Typography onClick={this.backToHomeHandler}>
-            &#60;&#60; Back to Home
-          </Typography>
+          <Button btnType="Danger" clicked={this.props.backToHome}>Back</Button>
         </div>
          <div className='main-container'>
           <div className='left-section'>

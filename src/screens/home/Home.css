@@ -1,3 +1,7 @@
 .update-Button {
     margin: 20px;
 }
+
+.update-Button {
+    float: left;
+}
